@@ -1,6 +1,6 @@
 # -*-coding:gbk-*-
 # -*-coding:utf-8-*-
-# 该tensorflow的版本是0.10
+# 该tensorflow的版本是0.10.0
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -8,7 +8,7 @@ import os
 import time
 import config as conf  # 引入另一个config.py文件
 from tensorflow.python.framework import dtypes
-from tensorflow.contrib import learn as tflearn
+from tensorflow.contrib import learn as tflearn  # 使用tensorflow版本是0.10.0
 from tensorflow.contrib import layers as tflayers
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -73,8 +73,8 @@ def Divide_data(data_file):
 
     if not os.path.exists(data_file):
         datasets = divide_data()
-        print('Saving in {}'.format(file))
-        np.savez(file, *datasets)
+        print('Saving in {}'.format(data_file))
+        np.savez(data_file, *datasets)
     else:
         with np.load(data_file) as file_load:
             datasets = [file_load['arr_%d' % i] for i in range(len(file_load.files))]
@@ -137,11 +137,9 @@ def lstm_model(time_steps, rnn_layers, dense_layers=None, learning_rate=0.1, opt
 
     def lstm_cells(layers):
         if isinstance(layers[0], dict):
-            return [tf.nn.rnn_cell.DropoutWrapper(tf.nn.rnn_cell.BasicLSTMCell(layer['num_units'],
-                                                                               state_is_tuple=True),
+            return [tf.nn.rnn_cell.DropoutWrapper(tf.nn.rnn_cell.BasicLSTMCell(layer['num_units'],state_is_tuple=True),
                                                   layer['keep_prob'])
-                    if layer.get('keep_prob') else tf.nn.rnn_cell.BasicLSTMCell(layer['num_units'],
-                                                                                state_is_tuple=True)
+                    if layer.get('keep_prob') else tf.nn.rnn_cell.BasicLSTMCell(layer['num_units'],state_is_tuple=True)
                     for layer in layers]
         return [tf.nn.rnn_cell.BasicLSTMCell(steps, state_is_tuple=True) for steps in layers]
 

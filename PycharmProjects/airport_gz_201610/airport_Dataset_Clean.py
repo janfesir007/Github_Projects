@@ -58,7 +58,7 @@ with open("airport_Dataset/Second_round/WIFI_AP_Passenger_Records_chusai_2ndroun
 with open("airport_Dataset/Second_round/every_points_WIFI_AP_Records/E1.csv", "a") as fE1:
     E1=sorted(E1, key=itemgetter(0, 2))  # 排序：按列表元素中的下标值0（wifi名称）,2(日期),1(连接人数)的顺序进行排序
     for line in E1:
-        arraydataE1=",".join(line)  # join(): 是split()"分割"的逆向操作：连接
+        arraydataE1=",".join(line)  # line是列表类型数据; join(): 是split()"分割"的逆向操作：连接
         fE1.write(arraydataE1+"\n")
 with open("airport_Dataset/Second_round/every_points_WIFI_AP_Records/E2.csv", "a") as fE2:
     E2 =sorted(E2, key=itemgetter(0, 2))

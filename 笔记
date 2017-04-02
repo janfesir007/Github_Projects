@@ -1,0 +1,88 @@
+1.ubuntu 命令安装python机器学习包：
+sudo apt-get install python-scipy
+sudo apt-get install python-numpy
+sudo apt-get install python-matplotlib
+sudo apt-get install python-sklearn
+sudo apt-get install python-pandas
+
+
+2.PyCharm默认Python脚本编码是UTF-8，我们将其设置为GBK：进入file>setting，在输入框搜索encoding，将原本的UTF-8设置为GBK，便能正确编码中文。
+3.PyCharm新建文件时可以在模板中添加编码字符集为utf-8（确保可以正确显示中文）：
+	File-->Settings-->Editor-->File and Code Templates-->PythonScript,右边方框输入：
+	# -*-coding:gbk-*-
+	# -*-coding:utf-8-*-
+新建文件可自动添加了,不必每新建一个文件手动添加
+4.Pycharm中，File-->Settings-->Appearance & Behavior--> Appearance,勾选Override default fonts by（not recommended）,为Pycharm整体环境设置喜欢的字体格式及大小。
+
+5. 设置Ubuntu下Pycharm的快捷启动方式
+
+在Ubuntu下，每次都要找到 pycharm.sh所在的文件夹，执行./pycharm.sh，非常麻烦。最好能创建一个快捷方式.
+
+Ubuntu的快捷方式都放在/usr/share/applications，首先在该目录下创建一个Pycharm.desktop
+
+$ sudo gedit /usr/share/applications/Pycharm.desktop
+
+然后输入以下内容，注意Exec和Icon需要找到正确的路径:
+
+[Desktop Entry]
+Type=Application
+Name=Pycharm
+GenericName=Pycharm3
+Comment=Pycharm3:The Python IDE
+Exec="/XXX/pycharm-community-3.2/bin/pycharm.sh" %f
+Icon=/XXX/pycharm-community-3.2/bin/pycharm.png
+Terminal=pycharm
+Categories=Pycharm;
+
+
+然后双击打开，再锁定到启动器就好了.
+
+6.tensorflow的Virtualenv安装方式安装，如何在ubuntu上以virtualenv方式安装tensorflow。　　
+1）安装pip和virtualenv：
+	
+# Ubuntu/Linux 64-bit
+sudo apt-get install python-pip python-dev python-virtualenv
+ 
+# Mac OS X
+sudo easy_install pip
+sudo pip install --upgrade virtualenv
+ 
+2）创建 Virtualenv 虚拟环境：
+进入你想安装tensorflow的父目录下，然后执行下面命令建立虚拟环境：
+sudo virtualenv --system-site-packages tensorflow
+ 
+3）激活虚拟环境并安装tensorflow：
+对于python27，则执行如下命令：	
+source ./tensorflow/bin/activate  # If using bash
+source ./tensorflow/bin/activate.csh  # If using csh
+(tensorflow)$  # Your prompt should change
+ 
+# Ubuntu/Linux 64-bit, CPU only:
+sudo pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.6.0-cp27-none-linux_x86_64.whl
+ 
+# Ubuntu/Linux 64-bit, GPU enabled:
+sudo pip install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.6.0-cp27-none-linux_x86_64.whl
+ 
+# Mac OS X, CPU only:
+pip install --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.6.0-py2-none-any.whl
+
+对于python3则执行如下命令：	
+source ./tensorflow/bin/activate  # If using bash
+source ./tensorflow/bin/activate.csh  # If using csh
+(tensorflow)$  # Your prompt should change
+ 
+# Ubuntu/Linux 64-bit, CPU only:
+pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.6.0-cp34-none-linux_x86_64.whl
+ 
+# Ubuntu/Linux 64-bit, GPU enabled:
+pip install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.6.0-cp34-none-linux_x86_64.whl
+ 
+# Mac OS X, CPU only:
+pip3 install --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.6.0-py3-none-any.whl
+
+备注：如果之前安装过 TensorFlow < 0.7.1 的版本,应该先使用 pip uninstall 卸载 TensorFlow 和 protobuf ,保证获取的是一个最新 protobuf 依赖下的安装包，否则会报错。
+
+7.http://222.200.98.8:1800/Dr.COM/?redirect=http://go.microsoft.com/fwlink/?LinkID=219472&clcid=0x409
+sudo dpkg -i iptux.deb#安装iptux.deb软件包（其中-i等价于--install）
+
+
